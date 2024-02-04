@@ -44,20 +44,19 @@ export default function Home() {
           <div className="inset-x-60 top-0 bg-gradient-to-r from-transparent via-red-600 to-transparent h-px w-full" />
         </div>
         <p
-          className="my-3 text-white p-3 text-center tracking-wide text-lg"
+          className="my-1 text-white p-3 text-center tracking-wide text-lg"
           style={{ fontFamily: badscript.style.fontFamily }}
         >
           A dating app for college students that matches singles with their
           soulmates using an innovative matching algorithm.
         </p>
         <div className="flex flex-col items-center">
-          <Image alt={"dwjo"} src={"/heart.svg"} width={150} height={150} />
+          <Image alt={"dwjo"} src={"/heart.svg"} width={130} height={130} />
         </div>
         <Track />
-
         <div
           className="self-center
-         mt-10 z-50"
+         mt-8 z-50"
         >
           <Link href="/getstarted">
             <div className="flex flex-col items-center">

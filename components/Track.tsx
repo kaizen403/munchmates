@@ -9,10 +9,10 @@ const badscript = Bad_Script({
 });
 const Track = () => {
   return (
-    <div className="pt-5 flex flex-col items-center text-white">
+    <div className="pt-3 flex flex-col items-center text-white">
       <p
         style={{ fontFamily: badscript.style.fontFamily }}
-        className="text-white my-3 text-md font-semibold items-center"
+        className="text-white my-2 text-md font-semibold items-center"
       >
         Create an account
       </p>
@@ -25,7 +25,7 @@ const Track = () => {
       />
       <p
         style={{ fontFamily: badscript.style.fontFamily }}
-        className="text-white my-3 text-md font-semibold items-center"
+        className="text-white my-2 text-md font-semibold items-center"
       >
         Choose Interests
       </p>
@@ -38,7 +38,7 @@ const Track = () => {
       />
       <p
         style={{ fontFamily: badscript.style.fontFamily }}
-        className="text-white my-3 text-md font-semibold items-center"
+        className="text-white my-2 text-md font-semibold items-center"
       >
         Get matched
       </p>
