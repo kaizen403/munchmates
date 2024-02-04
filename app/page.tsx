@@ -12,10 +12,10 @@ const badscript = Bad_Script({
   subsets: ["latin"],
 });
 
-export default function SparklesPreview() {
+export default function Home() {
   return (
     <div
-      className="relative w-full flex flex-col items-center bg-grid-white/[0.1] justify-center overflow-hidden rounded-md"
+      className="relative w-full bg-black flex flex-col items-center bg-grid-white/[0.1] justify-center overflow-hidden rounded-md"
       style={{ height: "100vh" }} // Ensures this is the lowest layer by using a negative z-index
     >
       <div
@@ -44,7 +44,7 @@ export default function SparklesPreview() {
           <div className="inset-x-60 top-0 bg-gradient-to-r from-transparent via-red-600 to-transparent h-px w-full" />
         </div>
         <p
-          className="my-3 p-3 text-center tracking-wide text-lg"
+          className="my-3 text-white p-3 text-center tracking-wide text-lg"
           style={{ fontFamily: badscript.style.fontFamily }}
         >
           A dating app for college students that matches singles with their
