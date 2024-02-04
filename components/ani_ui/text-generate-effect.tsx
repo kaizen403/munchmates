@@ -2,7 +2,13 @@
 import { useEffect } from "react";
 import { motion, stagger, useAnimate } from "framer-motion";
 import { cn } from "@/utils/cn";
-
+import { Bad_Script } from "next/font/google";
+const badscript = Bad_Script({
+  weight: "400",
+  style: "normal",
+  display: "swap",
+  subsets: ["latin"],
+});
 export const TextGenerateEffect = ({
   words,
   className,
@@ -32,7 +38,8 @@ export const TextGenerateEffect = ({
           return (
             <motion.span
               key={word + idx}
-              className="text-red-500 text-center leading-6 tracking-wide opacity-0"
+              style={{ fontFamily: badscript.style.fontFamily }}
+              className="text-white text-center leading-6 tracking-wide opacity-0"
             >
               {word}{" "}
             </motion.span>
@@ -45,7 +52,10 @@ export const TextGenerateEffect = ({
   return (
     <div className={cn("font-bold", className)}>
       <div className="mt-4">
-        <div className="text-white lg:text-lg sm:text-sm leading-6 text-center tracking-wide">
+        <div
+          style={{ fontFamily: badscript.style.fontFamily }}
+          className="text-white lg:text-lg sm:text-sm tracking-wide leading-6 text-center "
+        >
           {renderWords()}
         </div>
       </div>

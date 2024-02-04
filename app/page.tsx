@@ -1,10 +1,10 @@
-import SparklesCore from "@/components/ui/Particles";
+import SparklesCore from "@/components/ani_ui/Particles";
 import React from "react";
 import { Bad_Script } from "next/font/google";
-import { Button } from "@/components/ui/Movingborder";
+import { Button } from "@/components/ani_ui/Movingborder";
 import Link from "next/link";
-
-import { redirect } from "next/navigation";
+import Image from "next/image";
+import Track from "@/components/Track";
 const badscript = Bad_Script({
   weight: "400",
   style: "normal",
@@ -15,12 +15,12 @@ const badscript = Bad_Script({
 export default function Home() {
   return (
     <div
-      className="relative w-full bg-black flex flex-col items-center bg-grid-white/[0.1] justify-center overflow-hidden rounded-md"
-      style={{ height: "100vh" }} // Ensures this is the lowest layer by using a negative z-index
+      className="relative w-full bg-black flex flex-col items-center bg-grid-red-400/[0.1] justify-center overflow-hidden rounded-md"
+      style={{ height: "100vh", overflowY: "auto" }} // Ensures this is the lowest layer by using a negative z-index
     >
       <div
         className="absolute inset-0 w-full"
-        style={{ height: "100vh", zIndex: 5 }}
+        style={{ minHeight: "100%", zIndex: 5 }}
       >
         <SparklesCore
           id="tsparticlesfullpage"
@@ -33,7 +33,7 @@ export default function Home() {
         />
       </div>
       <div className="flex flex-col z-50 -mt-72">
-        <h1 className="md:text-7xl text-5xl tracking-normal lg:text-6xl font-bold text-center text-white relative z-10">
+        <h1 className="md:text-7xl pt-72 text-5xl tracking-normal lg:text-6xl font-bold text-center text-white relative z-10">
           Cupid Match
         </h1>
 
@@ -50,21 +50,31 @@ export default function Home() {
           A dating app for college students that matches singles with their
           soulmates using an innovative matching algorithm.
         </p>
+        <div className="flex flex-col items-center">
+          <Image alt={"dwjo"} src={"/heart.svg"} width={150} height={150} />
+        </div>
+        <Track />
 
         <div
           className="self-center
-         mt-20 z-50"
+         mt-10 z-50"
         >
-          <Link href="/login">
-            <div>
+          <Link href="/getstarted">
+            <div className="flex flex-col items-center">
               <Button
                 borderRadius="2px"
                 className="bg-black text-white text-lg dark:bg-slate-900  dark:text-white border-neutral-200 dark:border-slate-800"
               >
-                Start Maching
+                Create Account
               </Button>
             </div>
           </Link>
+          <p className="my-3 text-white text-sm">
+            Already have an account?{" "}
+            <Link className="underline text-pink-600" href={"/login"}>
+              login
+            </Link>
+          </p>
         </div>
       </div>
     </div>
