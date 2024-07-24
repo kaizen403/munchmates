@@ -1,5 +1,5 @@
 import React from "react";
-import { Bad_Script, Caveat } from "next/font/google";
+import { Caveat, Bad_Script } from "next/font/google";
 import Form from "@/components/Form";
 
 const badscript = Bad_Script({

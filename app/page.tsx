@@ -5,6 +5,7 @@ import { Button } from "@/components/ani_ui/Movingborder";
 import Link from "next/link";
 import Image from "next/image";
 import Track from "@/components/Track";
+
 const badscript = Bad_Script({
   weight: "400",
   style: "normal",
@@ -15,8 +16,8 @@ const badscript = Bad_Script({
 export default function Home() {
   return (
     <div
-      className="relative w-full bg-black flex flex-col items-center bg-grid-red-400/[0.1] justify-center overflow-hidden rounded-md"
-      style={{ height: "100vh", overflowY: "auto" }} // Ensures this is the lowest layer by using a negative z-index
+      className="relative w-full bg-black flex flex-col items-center bg-grid-red-400/[0.1] justify-center overflow-hidden"
+      style={{ minHeight: "100vh", overflowY: "auto" }} // Ensures this is the lowest layer by using a negative z-index
     >
       <div
         className="absolute inset-0 w-full"
@@ -32,34 +33,31 @@ export default function Home() {
           particleColor="#FF0000"
         />
       </div>
-      <div className="flex flex-col z-50 -mt-20">
-        <h1 className="md:text-7xl pt-72 text-5xl tracking-normal lg:text-6xl font-bold text-center text-white relative z-10">
-          MunchMates{" "}
+      <div className="flex flex-col z-50 mt-12 md:mt-20 lg:mt-32">
+        <h1 className="md:text-7xl pt-16 md:pt-24 text-5xl tracking-normal lg:text-6xl font-bold text-center text-white relative z-10">
+          MunchMates
         </h1>
 
-        <div>
+        <div className="my-4">
           <div className="inset-x-20 top-0 bg-gradient-to-r from-transparent via-red-500 to-transparent h-[2px] w-full blur-sm" />
           <div className="inset-x-20 top-0 bg-gradient-to-r from-transparent via-red-500 to-transparent h-px w-full" />
           <div className="inset-x-60 top-0 bg-gradient-to-r from-transparent via-red-600 to-transparent h-[5px] w-full blur-sm" />
           <div className="inset-x-60 top-0 bg-gradient-to-r from-transparent via-red-600 to-transparent h-px w-full" />
         </div>
-        <p className="my-1 font-lexend text-white p-3 text-center text-bold tracking text-lg">
+        <p className="my-1 font-lexend text-white px-4 md:px-6 text-center text-bold tracking text-lg">
           Welcome to MunchMate! Match with new friends over shared interests and
           meals. Find your perfect food buddy today!
         </p>
         <div className="flex flex-col items-center">
-          <Image alt={"dwjo"} src={"/lovers.png"} width={250} height={250} />
+          <Image alt="dwjo" src="/lovers.png" width={250} height={250} />
         </div>
         <Track />
-        <div
-          className="self-center
-         mt-8 z-50"
-        >
+        <div className="self-center mt-8 z-50">
           <Link href="/getstarted">
             <div className="flex flex-col items-center">
               <Button
                 borderRadius="2px"
-                className="bg-black text-white text-lg dark:bg-slate-900  dark:text-white border-neutral-200 dark:border-slate-800"
+                className="bg-black text-white text-lg dark:bg-slate-900 dark:text-white border-neutral-200 dark:border-slate-800"
               >
                 Create Account
               </Button>
@@ -67,7 +65,7 @@ export default function Home() {
           </Link>
           <p className="my-3 text-white text-sm">
             Already have an account?{" "}
-            <Link className="underline text-pink-600" href={"/login"}>
+            <Link className="underline text-pink-600" href="/login">
               login
             </Link>
           </p>

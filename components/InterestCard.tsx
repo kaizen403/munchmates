@@ -1,15 +1,14 @@
+// File: components/InterestCard.tsx
+
 import React from "react";
 
-interface InterestCardProps {
-  interest: {
-    id: number;
-    name: string;
-  };
-}
-
-const InterestCard: React.FC<InterestCardProps> = ({ interest }) => {
+const InterestCard = ({
+  interest,
+}: {
+  interest: { id: number; name: string };
+}) => {
   return (
-    <div className="p-3 border rounded bg-gray-950 tracking-wide font-lexend font-semibold text-white text-lg border-red-950">
+    <div className="p-4 border border-red-950 rounded-md bg-gray-950 text-white">
       {interest.name}
     </div>
   );
