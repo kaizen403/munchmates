@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "generate": "prisma generate",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",

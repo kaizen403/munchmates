@@ -1,0 +1,12 @@
+{
+  "env": {
+    "DATABASE_URL": "@database_url"
+  },
+  "buildCommand": "pnpm install && pnpm run generate && pnpm run build",
+  "functions": {
+    "api/**/*.ts": {
+      "runtime": "nodejs18.x",
+      "includeFiles": "node_modules/.prisma/client/index.js"
+    }
+  }
+}
