@@ -32,9 +32,9 @@ export default function Home() {
           particleColor="#FF0000"
         />
       </div>
-      <div className="flex flex-col z-50 -mt-72">
+      <div className="flex flex-col z-50 -mt-20">
         <h1 className="md:text-7xl pt-72 text-5xl tracking-normal lg:text-6xl font-bold text-center text-white relative z-10">
-          Cupid Match
+          MunchMates{" "}
         </h1>
 
         <div>
@@ -43,15 +43,12 @@ export default function Home() {
           <div className="inset-x-60 top-0 bg-gradient-to-r from-transparent via-red-600 to-transparent h-[5px] w-full blur-sm" />
           <div className="inset-x-60 top-0 bg-gradient-to-r from-transparent via-red-600 to-transparent h-px w-full" />
         </div>
-        <p
-          className="my-1 text-white p-3 text-center tracking-wide text-lg"
-          style={{ fontFamily: badscript.style.fontFamily }}
-        >
-          A dating app for college students that matches singles with their
-          soulmates using an innovative matching algorithm.
+        <p className="my-1 font-lexend text-white p-3 text-center text-bold tracking text-lg">
+          Welcome to MunchMate! Match with new friends over shared interests and
+          meals. Find your perfect food buddy today!
         </p>
         <div className="flex flex-col items-center">
-          <Image alt={"dwjo"} src={"/heart.svg"} width={130} height={130} />
+          <Image alt={"dwjo"} src={"/lovers.png"} width={250} height={250} />
         </div>
         <Track />
         <div

@@ -2,6 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 import {
   CardTitle,
@@ -30,24 +31,31 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Link } from "lucide-react";
 import formSchema from "@/lib/validation/user";
 
 export default function Component() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    // Manually convert age to number
+    const modifiedValues = {
+      ...values,
+      age: Number(values.age),
+    };
+    console.log(modifiedValues);
+    // Navigate to /interests page after form submission
+    router.push("/interests");
   }
 
   return (
-    <Card className="mx-auto flex flex-col items-center border-red-500 bg-red-950 max-w-md">
+    <Card className="mx-auto flex flex-col items-center border-red-950 bg-dot-red-900 max-w-md">
       <CardHeader className="space-y-1">
         <CardDescription className="text-center">
-          How is it safe? None of your personal data is being taken except full
-          name and college mail is taken for ensuring exclusivity.
+          Note: None of your personal data is being taken except full name and
+          college mail is taken for ensuring exclusivity.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -63,7 +71,6 @@ export default function Component() {
                     <FormControl>
                       <Input placeholder="Your name" {...field} />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
@@ -93,7 +100,7 @@ export default function Component() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-white">password</FormLabel>
+                    <FormLabel className="text-white">Password</FormLabel>
                     <FormControl>
                       <Input
                         type="password"
@@ -113,16 +120,20 @@ export default function Component() {
                   <FormItem>
                     <FormLabel className="text-white">Age</FormLabel>
                     <FormControl>
-                      <Input type="number" placeholder="Select" {...field} />
+                      <Input
+                        type="number"
+                        placeholder="Select"
+                        {...field}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                      />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name="email"
+                name="gender"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-white">Gender</FormLabel>
@@ -138,14 +149,13 @@ export default function Component() {
                       <SelectContent>
                         <SelectItem value="Male">Male</SelectItem>
                         <SelectItem value="Female">Female</SelectItem>
+                        <SelectItem value="Other">Other</SelectItem>
                       </SelectContent>
                     </Select>
-
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <Button className="w-full bg-red-500" type="submit">
                 Done
               </Button>
