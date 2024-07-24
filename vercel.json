@@ -1,7 +1,4 @@
 {
-  "env": {
-    "DATABASE_URL": "@database_url"
-  },
   "buildCommand": "pnpm install && pnpm run build",
   "functions": {
     "api/**/*.ts": {
