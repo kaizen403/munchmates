@@ -1,9 +1,0 @@
-{
-  "buildCommand": "pnpm install && pnpm run build",
-  "functions": {
-    "app/api/**/*.ts": {
-      "runtime": "nodejs@22.2.0",
-      "includeFiles": "node_modules/.prisma/client/index.js"
-    }
-  }
-}
