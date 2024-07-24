@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "generate": "prisma generate",
+    "postinstall": "prisma generate",
     "build": "next build",
     "dev": "next dev"
   },

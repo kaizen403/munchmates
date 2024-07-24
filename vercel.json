@@ -2,7 +2,7 @@
   "env": {
     "DATABASE_URL": "@database_url"
   },
-  "buildCommand": "pnpm install && pnpm run generate && pnpm run build",
+  "buildCommand": "pnpm install && pnpm run build",
   "functions": {
     "api/**/*.ts": {
       "runtime": "nodejs18.x",
