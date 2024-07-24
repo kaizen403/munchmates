@@ -1,14 +1,22 @@
-// File: components/InterestCard.tsx
-
+"use client";
 import React from "react";
 
 const InterestCard = ({
   interest,
+  selected,
+  toggleSelection,
 }: {
   interest: { id: number; name: string };
+  selected: boolean;
+  toggleSelection: () => void;
 }) => {
   return (
-    <div className="p-4 border border-red-950 rounded-md bg-gray-950 text-white">
+    <div
+      onClick={toggleSelection}
+      className={`p-4 border rounded-md text-white cursor-pointer ${
+        selected ? "bg-gray-700 border-white" : "border-red-950 bg-gray-950"
+      }`}
+    >
       {interest.name}
     </div>
   );

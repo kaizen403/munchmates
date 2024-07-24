@@ -1,6 +1,15 @@
 "use client";
+
 import { CircularProgress } from "@nextui-org/progress";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import {
+  interestsState,
+  selectedInterestsState,
+  totalInterestsState,
+  loadedInterestsState,
+  loadingState,
+} from "../../recoil/atoms";
 import InterestCard from "../../components/InterestCard";
 import { Caveat } from "next/font/google";
 
@@ -19,25 +28,53 @@ const getInterests = async (skip: number, take: number) => {
   return data;
 };
 
-const Interests = () => {
-  const [interests, setInterests] = useState<{ id: number; name: string }[]>(
-    [],
-  );
-  const [loadedInterests, setLoadedInterests] = useState(0);
-  const [totalInterests, setTotalInterests] = useState(0);
-  const [loading, setLoading] = useState(false);
+type Interest = {
+  id: number;
+  name: string;
+};
 
-  useEffect(() => {
-    loadInterests();
-  }, []);
+const Interests = () => {
+  const [interests, setInterests] = useRecoilState<Interest[]>(interestsState);
+  const [selectedInterests, setSelectedInterests] = useRecoilState<Set<number>>(
+    selectedInterestsState,
+  );
+  const [loadedInterests, setLoadedInterests] =
+    useRecoilState<number>(loadedInterestsState);
+  const [totalInterests, setTotalInterests] =
+    useRecoilState<number>(totalInterestsState);
+  const [loading, setLoading] = useRecoilState<boolean>(loadingState);
 
   const loadInterests = async () => {
     setLoading(true);
     const data = await getInterests(loadedInterests, PAGE_SIZE);
-    setInterests((prev) => [...prev, ...data.interests]);
+    setInterests((prev) => {
+      const newInterests = data.interests.filter(
+        (interest: Interest) =>
+          !prev.some((prevInterest) => prevInterest.id === interest.id),
+      );
+      return [...prev, ...newInterests];
+    });
     setTotalInterests(data.totalInterests);
     setLoadedInterests((prev) => prev + data.interests.length);
     setLoading(false);
+  };
+
+  useEffect(() => {
+    if (interests.length === 0) {
+      loadInterests();
+    }
+  }, [interests.length]); // Remove loadInterests from dependency array
+
+  const toggleInterestSelection = (id: number) => {
+    setSelectedInterests((prev) => {
+      const newSelected = new Set(prev);
+      if (newSelected.has(id)) {
+        newSelected.delete(id);
+      } else if (newSelected.size < 12) {
+        newSelected.add(id);
+      }
+      return newSelected;
+    });
   };
 
   return (
@@ -62,6 +99,8 @@ const Interests = () => {
               <InterestCard
                 key={`${interest.id}-${index}`}
                 interest={interest}
+                selected={selectedInterests.has(interest.id)}
+                toggleSelection={() => toggleInterestSelection(interest.id)}
               />
             ))}
           </div>
@@ -77,6 +116,13 @@ const Interests = () => {
                 ) : (
                   `Load More Interests (${totalInterests - loadedInterests} left)`
                 )}
+              </button>
+            </div>
+          )}
+          {selectedInterests.size >= 6 && (
+            <div className="text-center mt-4">
+              <button className="bg-red-500 text-white py-2 px-4 rounded">
+                Next
               </button>
             </div>
           )}
