@@ -3,6 +3,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { useRecoilState } from "recoil";
+import {
+  userNameState,
+  userEmailState,
+  userPasswordState,
+  userAgeState,
+  userGenderState,
+} from "@/recoil/atoms";
 
 import {
   CardTitle,
@@ -35,23 +43,41 @@ import formSchema from "@/lib/validation/user";
 
 export default function Component() {
   const router = useRouter();
+  const [name, setName] = useRecoilState(userNameState);
+  const [email, setEmail] = useRecoilState(userEmailState);
+  const [password, setPassword] = useRecoilState(userPasswordState);
+  const [age, setAge] = useRecoilState(userAgeState);
+  const [gender, setGender] = useRecoilState(userGenderState);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      name,
+      email,
+      password,
+      age: age ?? 18,
+      gender: gender ?? "Male",
+    }, // Default to some value if not set
   });
-
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Manually convert age to number
     const modifiedValues = {
       ...values,
       age: Number(values.age),
     };
+
+    // Update Recoil states with form values
+    setName(modifiedValues.name);
+    setEmail(modifiedValues.email);
+    setPassword(modifiedValues.password);
+    setAge(modifiedValues.age);
+    setGender(modifiedValues.gender);
+
     console.log(modifiedValues);
     // Navigate to /interests page after form submission
     router.push("/interests");
   }
-
   return (
-    <Card className="mx-auto flex flex-col items-center border-red-800 border-2 rounded-3xl bg-red-950 max-w-md">
+    <Card className="mx-auto flex flex-col items-center border-red-800 border-1 rounded-3xl bg-black max-w-md">
       <CardHeader className="space-y-1">
         <CardDescription className="text-center">
           Note: None of your personal data is being taken except full name and

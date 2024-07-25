@@ -54,7 +54,7 @@ export default function Page() {
           Find your perfect match effortlessly. Share details when you are
           ready—not with us, but with them!{" "}
         </div>
-        <div className="w-full p-4 rounded-md bg-black border border-red-950 shadow-lg">
+        <div className="w-full p-4 rounded-md shadow-lg">
           <Form />
         </div>
       </div>

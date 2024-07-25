@@ -3,14 +3,20 @@ import { Button } from "@/components/ani_ui/Movingborder";
 
 import { CircularProgress } from "@nextui-org/progress";
 import { useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
   interestsState,
   selectedInterestsState,
   totalInterestsState,
   loadedInterestsState,
   loadingState,
+  userNameState,
+  userEmailState,
+  userPasswordState,
+  userAgeState,
+  userGenderState,
 } from "../../recoil/atoms";
+import { useRouter } from "next/navigation";
 import InterestCard from "../../components/InterestCard";
 import { Caveat } from "next/font/google";
 
@@ -45,6 +51,13 @@ const Interests = () => {
     useRecoilState<number>(totalInterestsState);
   const [loading, setLoading] = useRecoilState<boolean>(loadingState);
 
+  const name = useRecoilValue(userNameState);
+  const email = useRecoilValue(userEmailState);
+  const password = useRecoilValue(userPasswordState);
+  const age = useRecoilValue(userAgeState);
+  const gender = useRecoilValue(userGenderState);
+
+  const router = useRouter();
   const loadInterests = async () => {
     setLoading(true);
     const data = await getInterests(loadedInterests, PAGE_SIZE);
@@ -59,7 +72,6 @@ const Interests = () => {
     setLoadedInterests((prev) => prev + data.interests.length);
     setLoading(false);
   };
-
   useEffect(() => {
     if (interests.length === 0) {
       loadInterests();
@@ -78,6 +90,30 @@ const Interests = () => {
     });
   };
 
+  const handleSubmit = async () => {
+    const userData = {
+      name,
+      email,
+      password,
+      age,
+      gender,
+      interests: Array.from(selectedInterests),
+    };
+
+    const res = await fetch("/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    if (res.ok) {
+      router.push("/"); // Redirect to a success page or home page after successful registration
+    } else {
+      console.error("Failed to register user");
+    }
+  };
   return (
     <div className="p-4 bg-black bg-dot-red-950 min-h-screen">
       <h1
@@ -87,7 +123,7 @@ const Interests = () => {
         Select Your Interests
       </h1>
       <div className="text-center text-white mb-6">
-        Note: Select at least 6 interests and a maximum of 12 interests.
+        Select at least 6 interests and a maximum of 12 interests.
       </div>
       {loading && loadedInterests === 0 ? (
         <div className="flex justify-center items-center h-full">
@@ -108,7 +144,7 @@ const Interests = () => {
           {loadedInterests < totalInterests && (
             <div className="text-center mt-6">
               <button
-                className="bg-red-950 border border-white text-sm text-gray-400 py-1 px-2 rounded-3xl"
+                className="bg-red-950 border border-gray-600 text-sm text-gray-400 py-1 px-2 rounded-3xl"
                 onClick={loadInterests}
                 disabled={loading}
               >
@@ -124,6 +160,7 @@ const Interests = () => {
             <div className="text-center mt-8">
               <Button
                 borderRadius="2px"
+                onClick={handleSubmit}
                 className="bg-black text-white text-lg bg-slate-900 dark:text-white border-neutral-200 dark:border-slate-800"
               >
                 Next

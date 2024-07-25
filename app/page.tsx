@@ -34,8 +34,8 @@ export default function Home() {
         />
       </div>
       <div className="flex flex-col z-50 mt-12 md:mt-20 lg:mt-32">
-        <h1 className="md:text-7xl pt-16 md:pt-24 text-5xl tracking-normal lg:text-6xl font-bold text-center text-white relative z-10">
-          MunchMates
+        <h1 className="md:text-7xl pt-10 md:pt-24 text-5xl tracking-normal lg:text-6xl font-bold text-center text-white relative z-10">
+          MunchMate
         </h1>
 
         <div className="my-4">

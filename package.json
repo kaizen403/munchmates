@@ -14,6 +14,9 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@hookform/resolvers": "^3.9.0",
     "@next/font": "^14.2.5",
+    "@nextui-org/button": "^2.0.37",
+    "@nextui-org/link": "^2.0.34",
+    "@nextui-org/navbar": "^2.0.36",
     "@nextui-org/progress": "^2.0.33",
     "@nextui-org/react": "^2.4.6",
     "@prisma/client": "^5.17.0",
@@ -24,6 +27,9 @@
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.5.0",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.12",
@@ -41,6 +47,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.14.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
