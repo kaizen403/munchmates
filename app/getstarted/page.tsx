@@ -48,11 +48,11 @@ export default function Page() {
           className="md:text-5xl mb-5 text-4xl tracking-wide lg:text-6xl font-bold text-center text-red-700 relative z-10"
           style={{ fontFamily: caveat.style.fontFamily }}
         >
-          Create Your Account
+          Basic Info:
         </h1>
         <div className="text-center text-white mb-6">
-          Set up your profile, pick your favorite activities, and find awesome
-          food buddies!
+          Find your perfect match effortlessly. Share details when you're
+          ready—not with us, but with them!{" "}
         </div>
         <div className="w-full p-4 rounded-md bg-black border border-red-950 shadow-lg">
           <Form />

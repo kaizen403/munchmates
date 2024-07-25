@@ -51,11 +51,11 @@ export default function Component() {
   }
 
   return (
-    <Card className="mx-auto flex flex-col items-center border-red-950 bg-dot-red-900 max-w-md">
+    <Card className="mx-auto flex flex-col items-center border-red-800 border-2 rounded-3xl bg-red-950 max-w-md">
       <CardHeader className="space-y-1">
         <CardDescription className="text-center">
           Note: None of your personal data is being taken except full name and
-          college mail is taken for ensuring exclusivity.
+          college mail is taken for ensuring exclusivity and safety.
         </CardDescription>
       </CardHeader>
       <CardContent>

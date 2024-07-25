@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@/components/ani_ui/Movingborder";
 
 import { CircularProgress } from "@nextui-org/progress";
 import { useEffect } from "react";
@@ -105,25 +106,28 @@ const Interests = () => {
             ))}
           </div>
           {loadedInterests < totalInterests && (
-            <div className="text-center mt-4">
+            <div className="text-center mt-6">
               <button
-                className="bg-red-900 border border-white text-white py-2 px-4 rounded"
+                className="bg-red-950 border border-white text-sm text-gray-400 py-1 px-2 rounded-3xl"
                 onClick={loadInterests}
                 disabled={loading}
               >
                 {loading ? (
                   <CircularProgress color="danger" aria-label="Loading..." />
                 ) : (
-                  `Load More Interests (${totalInterests - loadedInterests} left)`
+                  `More... (${totalInterests - loadedInterests} left)`
                 )}
               </button>
             </div>
           )}
           {selectedInterests.size >= 6 && (
-            <div className="text-center mt-4">
-              <button className="bg-red-500 text-white py-2 px-4 rounded">
+            <div className="text-center mt-8">
+              <Button
+                borderRadius="2px"
+                className="bg-black text-white text-lg bg-slate-900 dark:text-white border-neutral-200 dark:border-slate-800"
+              >
                 Next
-              </button>
+              </Button>
             </div>
           )}
         </>
