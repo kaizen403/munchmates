@@ -51,7 +51,7 @@ export default function Page() {
           Basic Info:
         </h1>
         <div className="text-center text-white mb-6">
-          Find your perfect match effortlessly. Share details when you're
+          Find your perfect match effortlessly. Share details when you are
           ready—not with us, but with them!{" "}
         </div>
         <div className="w-full p-4 rounded-md bg-black border border-red-950 shadow-lg">
