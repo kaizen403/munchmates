@@ -21,12 +21,6 @@ jobs:
     - name: Install pnpm
       run: npm install -g pnpm
 
-    - name: Install dependencies
-      run: pnpm install
-
-    - name: Build the project
-      run: pnpm run build
-
     - name: Deploy to EC2
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -35,9 +29,12 @@ jobs:
       run: |
         echo "$SSH_PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
-        rsync -avz -e "ssh -i private_key.pem -o StrictHostKeyChecking=no" --exclude='.git' ./ ubuntu@${EC2_HOST}:/home/ubuntu/munchmates/
-        ssh -i private_key.pem -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} << 'EOF'
-          cd /home/ubuntu/munchmates
-          pnpm install --prod
-          pm2 restart all || pm2 start pnpm --name "munchmates" -- start
+        ssh -i private_key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
+          rm -rf ~/munchmates
+          git clone https://github.com/kaizen403/munchmates.git ~/munchmates
+          cd ~/munchmates
+          pnpm install
+          pnpm run build
+          pm2 delete all
+          pm2 start pnpm "pnpm build && pnpm start"--name "munchmate" -- start
         EOF
